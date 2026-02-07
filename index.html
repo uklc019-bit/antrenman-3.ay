@@ -3,29 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antrenman Programı</title>
+<title>3. Ay Antrenman Programı</title>
 
 <style>
 :root{
   --bg:#0f1115;
   --card:#1a1d24;
   --border:#2a2e38;
-  --text:#e6e8ec;
-  --muted:#9aa0aa;
-  --accent:#5f86ff;
+  --text:#eceef3;
+  --muted:#a0a5b0;
+  --accent:#ff4d4d;
+  --accent-soft:#ff4d4d33;
 }
 
 body{
   margin:0;
-  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family:-apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background:var(--bg);
   color:var(--text);
+  letter-spacing:0.2px;
 }
 
 header{
   text-align:center;
-  padding:18px;
-  font-size:20px;
+  padding:20px 12px;
+  font-size:21px;
+  font-weight:700;
   border-bottom:1px solid var(--border);
 }
 
@@ -41,6 +44,7 @@ header{
   border:none;
   color:var(--muted);
   font-weight:600;
+  font-size:14px;
 }
 
 .tabs button.active{
@@ -58,22 +62,24 @@ header{
 
 .day-title{
   text-align:center;
-  font-size:16px;
+  font-size:15px;
+  font-weight:600;
   color:var(--accent);
-  margin:12px 0 20px;
+  margin:12px 0 22px;
 }
 
 .exercise{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:14px;
+  border-radius:14px;
+  padding:15px;
   margin-bottom:18px;
 }
 
 .exercise h3{
   margin:0 0 10px;
   font-size:15px;
+  font-weight:600;
 }
 
 .gif{
@@ -81,38 +87,44 @@ header{
   max-height:220px;
   object-fit:contain;
   background:#000;
-  border-radius:8px;
-  margin-bottom:10px;
+  border-radius:10px;
+  margin-bottom:12px;
 }
 
 .kg{
   display:flex;
-  gap:8px;
+  gap:10px;
 }
 
 .kg input{
   flex:1;
-  padding:10px;
-  border-radius:8px;
+  padding:11px;
+  border-radius:10px;
   border:1px solid var(--border);
   background:#0c0e12;
   color:var(--text);
+  font-weight:500;
+}
+
+.kg input:focus{
+  outline:none;
+  border-color:var(--accent);
 }
 
 .kg button{
-  padding:10px 14px;
-  border-radius:8px;
+  padding:11px 16px;
+  border-radius:10px;
   border:none;
   background:var(--accent);
   color:#fff;
-  font-weight:600;
+  font-weight:700;
 }
 </style>
 </head>
 
 <body>
 
-<header>Antrenman Programı</header>
+<header>3. Ay Antrenman Programı</header>
 
 <div class="tabs">
   <button class="active" onclick="showDay('g1',this)">1. Gün</button>
