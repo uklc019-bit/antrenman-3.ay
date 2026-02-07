@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3. Ay Antrenman Programı</title>
+
+<style>
+:root{
+  --bg:#0c0f12;
+  --card:#151a20;
+  --card-hover:#1b222b;
+  --accent:#4caf50;
+  --accent-soft:#2e7d32;
+  --text:#ffffff;
+  --muted:#9aa4af;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Inter, Arial, Helvetica, sans-serif;
+  background:linear-gradient(180deg,#0c0f12,#0a0d10);
+  color:var(--text);
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:18px 10px;
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:.5px;
+  background:#0f1318;
+  border-bottom:1px solid #1f2933;
+}
+
+/* TABS */
+.tabs{
+  display:flex;
+  background:#0f1318;
+}
+
+.tabs button{
+  flex:1;
+  padding:14px;
+  background:transparent;
+  color:var(--muted);
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.tabs button.active{
+  color:var(--text);
+  background:linear-gradient(180deg,#151a20,#10151b);
+  border-bottom:3px solid var(--accent);
+}
+
+.tabs button:hover{
+  color:var(--text);
+}
+
+/* CONTAINER */
+.container{
+  max-width:960px;
+  margin:auto;
+  padding:16px;
+}
+
+.day{display:none}
+
+/* EXERCISE CARD */
+.exercise{
+  background:linear-gradient(180deg,var(--card),#12161c);
+  padding:16px;
+  border-radius:14px;
+  margin-bottom:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+  transition:.25s;
+}
+
+.exercise:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(180deg,var(--card-hover),#141a22);
+}
+
+.exercise h3{
+  margin:0 0 12px;
+  font-size:17px;
+  letter-spacing:.3px;
+}
+
+/* GIF */
+.gif{
+  width:100%;
+  max-height:230px;
+  object-fit:contain;
+  background:#000;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+
+/* KG AREA */
+.kg{
+  display:flex;
+  gap:10px;
+}
+
+.kg input{
+  flex:1;
+  padding:11px;
+  border-radius:8px;
+  border:1px solid #26313d;
+  background:#0f141a;
+  color:#fff;
+  font-size:15px;
+}
+
+.kg input::placeholder{
+  color:#6b7280;
+}
+
+.kg button{
+  background:linear-gradient(180deg,var(--accent),var(--accent-soft));
+  border:none;
+  border-radius:8px;
+  padding:11px 18px;
+  font-weight:700;
+  color:#fff;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.kg button:hover{
+  filter:brightness(1.1);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  header{font-size:20px}
+  .exercise h3{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<header>3. Ay Antrenman Programı</header>
+
+<div class="tabs">
+  <button class="active" onclick="showDay('g1',this)">1. Gün</button>
+  <button onclick="showDay('g2',this)">2. Gün</button>
+  <button onclick="showDay('g3',this)">3. Gün</button>
+</div>
+
+<div class="container">
+
+<!-- 1. GÜN -->
+<div id="g1" class="day" style="display:block">
+  <div class="exercise"><h3>Bench Press</h3><img src="https://burnfit.io/wp-content/uploads/2023/11/SPOTO_BP.gif" class="gif"><KgBox id="bp"/></div>
+  <div class="exercise"><h3>Dumbbell Fly</h3><img src="https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Fly.gif" class="gif"><KgBox id="df"/></div>
+  <div class="exercise"><h3>Incline Bench Press</h3><img src="https://www.strengthlog.com/wp-content/uploads/2020/03/Incline-Bench-Press.gif" class="gif"><KgBox id="ibp"/></div>
+  <div class="exercise"><h3>Incline Dumbbell Press</h3><img src="https://www.strengthlog.com/wp-content/uploads/2020/03/Dumbbell-Incline-Press.gif" class="gif"><KgBox id="idp"/></div>
+  <div class="exercise"><h3>Dumbbell Pullover</h3><img src="https://www.strengthlog.com/wp-content/uploads/2020/03/Dumbbell-Pullover.gif" class="gif"><KgBox id="pl"/></div>
+  <div class="exercise"><h3>Triceps Pushdown</h3><img src="https://burnfit.io/wp-content/uploads/2023/11/CABLE_PUSH_DOWN.gif" class="gif"><KgBox id="tp"/></div>
+  <div class="exercise"><h3>French Triceps</h3><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLfIaCUpCvSbjUaokQRidW40YL8DcaWUxG5rrtLOBffQ&s=10" class="gif"><KgBox id="ft"/></div>
+  <div class="exercise"><h3>One Dumbbell Triceps Press</h3><img src="https://images.squarespace-cdn.com/content/v1/5ffcea9416aee143500ea103/1638260103209-NCDPK0RI94MTSL5YWMZM/One%2BArm%2BOverhead%2BStanding%2BTriceps%2BExtensions.jpeg" class="gif"><KgBox id="odtp"/></div>
+</div>
+
+<!-- 2. GÜN -->
+<div id="g2" class="day">
+  <div class="exercise"><h3>Lat Pull Down</h3><img src="https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif" class="gif"><KgBox id="lat"/></div>
+  <div class="exercise"><h3>Barbell Bent-over Row</h3><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKyXeC53nU79lG6V7aSTGlknIDFjAk9lTXo5pXn32ggoZDpShPrjYpwo-D&s=10" class="gif"><KgBox id="row"/></div>
+  <div class="exercise"><h3>Seated Cable Row</h3><img src="https://i.namu.wiki/i/qE1tddISYh8n7gCAPqAhuGNFDxDr_aihEMqrYw0989bTKSP_K0hX4ZSr-7Qm-pyGVbO08QsQmwNj1dXqvmpSJw.webp" class="gif"><KgBox id="scr"/></div>
+  <div class="exercise"><h3>One Arm Dumbbell Row</h3><img src="https://burnfit.io/wp-content/uploads/2023/11/OA_DB_ROW.gif" class="gif"><KgBox id="oadr"/></div>
+  <div class="exercise"><h3>Vertical Row Machine</h3><img src="https://app.aspira-fitness.com/api/media/c9582142-ea9f-40ee-b9ac-f08ef4912a4e" class="gif"><KgBox id="vr"/></div>
+  <div class="exercise"><h3>Barbell Biceps Curl</h3><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNeuYuk6pKjV5Dl1TsryKIq5NJ9i5wS2R9K3qB2JgQnw&s=10" class="gif"><KgBox id="bbc"/></div>
+  <div class="exercise"><h3>Scott Curl</h3><img src="https://miro.medium.com/v2/resize:fit:1400/0*ednzW7zRRUT4a3Rd.gif" class="gif"><KgBox id="sc"/></div>
+  <div class="exercise"><h3>Alternative Curl</h3><img src="https://cdn.shopify.com/s/files/1/1497/9682/files/2_dd805047-4f47-4ebf-ad7b-3336dd3b69d2.jpg?v=1658851624" class="gif"><KgBox id="ac"/></div>
+</div>
+
+<!-- 3. GÜN -->
+<div id="g3" class="day">
+  <div class="exercise"><h3>Barbell Neck Press</h3><img src="https://fitnessprogramer.com/wp-content/uploads/2021/06/Smith-Machine-Behind-Neck-Press.gif" class="gif"><KgBox id="bnp"/></div>
+  <div class="exercise"><h3>Dumbbell Lateral Raise</h3><img src="https://www.strengthlog.com/wp-content/uploads/2020/12/Dumbbell-Lateral-Raise.gif" class="gif"><KgBox id="dlr"/></div>
+  <div class="exercise"><h3>Military Press</h3><img src="https://fitnessprogramer.com/wp-content/uploads/2021/06/Standing-Smith-Machine-Shoulder-Press.gif" class="gif"><KgBox id="mp"/></div>
+  <div class="exercise"><h3>Dumbbell Front Raise</h3><img src="https://www.fitnesscim.com/wp-content/uploads/2020/01/Dumbell-Front-Raise-Nereyi-.png" class="gif"><KgBox id="dfr"/></div>
+  <div class="exercise"><h3>Dumbbell Bent-over Lateral Raise</h3><img src="https://bodybook.com.tr/wp-content/uploads/2024/10/dumbellbentoverlateralraise.gif" class="gif"><KgBox id="bolr"/></div>
+  <div class="exercise"><h3>Barbell Squat</h3><img src="https://fitnessprogramer.com/wp-content/uploads/2023/01/Barbell-Jump-Squat.gif" class="gif"><KgBox id="sq"/></div>
+  <div class="exercise"><h3>Leg Press Machine</h3><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqq8tiUlANTeIDENJV-elg7P8U4jyv2Sq40vmqq9d4iQ&s=10" class="gif"><KgBox id="lp"/></div>
+  <div class="exercise"><h3>Leg Extension</h3><img src="https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif" class="gif"><KgBox id="le"/></div>
+  <div class="exercise"><h3>Machine Leg Curl</h3><img src="https://cdn05.zipify.com/DEy9eP8SjfPH5VtqDXB0wzZucEQ=/fit-in/3840x0/ef422538af8d4ede9dbf29f7dd318f4b/lying-leg-curl.gif" class="gif"><KgBox id="lc"/></div>
+</div>
+
+</div>
+
+<script>
+function showDay(id,el){
+  document.querySelectorAll('.day').forEach(d=>d.style.display='none');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).style.display='block';
+  el.classList.add('active');
+}
+
+function renderKg(){
+  document.querySelectorAll("KgBox").forEach(e=>{
+    const id=e.getAttribute("id");
+    e.outerHTML=`<div class="kg">
+      <input id="${id}" placeholder="Kg" value="${localStorage.getItem(id)||""}">
+      <button onclick="localStorage.setItem('${id}',document.getElementById('${id}').value)">Kaydet</button>
+    </div>`;
+  });
+}
+renderKg();
+</script>
+
+</body>
+</html>
