@@ -7,31 +7,31 @@
 
 <style>
 :root{
-  --bg:#05070d;
-  --card:#11182a;
-  --border:#1e90ff33;
-  --neon:#1e90ff;
-  --neon-soft:#1e90ff66;
-  --text:#e8ecff;
+  --bg:#0f1115;
+  --card:#1a1d24;
+  --border:#2a2e38;
+  --text:#e6e8ec;
+  --muted:#9aa0aa;
+  --accent:#5f86ff;
 }
 
 body{
   margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:radial-gradient(circle at top, #0f1630, var(--bg));
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background:var(--bg);
   color:var(--text);
 }
 
 header{
   text-align:center;
   padding:18px;
-  font-size:22px;
-  box-shadow:0 0 15px var(--neon-soft);
+  font-size:20px;
+  border-bottom:1px solid var(--border);
 }
 
 .tabs{
   display:flex;
-  background:#000;
+  background:#0c0e12;
 }
 
 .tabs button{
@@ -39,42 +39,41 @@ header{
   padding:14px;
   background:none;
   border:none;
-  color:var(--text);
-  font-weight:bold;
+  color:var(--muted);
+  font-weight:600;
 }
 
 .tabs button.active{
-  color:var(--neon);
-  box-shadow:inset 0 -3px 0 var(--neon), 0 0 10px var(--neon-soft);
+  color:var(--accent);
+  border-bottom:2px solid var(--accent);
 }
 
 .container{
   max-width:900px;
   margin:auto;
-  padding:18px;
+  padding:16px;
 }
 
 .day{display:none}
 
 .day-title{
   text-align:center;
-  font-size:18px;
-  margin:10px 0 20px;
-  color:var(--neon);
-  text-shadow:0 0 8px var(--neon-soft);
+  font-size:16px;
+  color:var(--accent);
+  margin:12px 0 20px;
 }
 
 .exercise{
-  background:linear-gradient(180deg, #141c33, var(--card));
+  background:var(--card);
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:16px;
-  margin-bottom:20px;
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:18px;
 }
 
 .exercise h3{
   margin:0 0 10px;
-  color:var(--neon);
+  font-size:15px;
 }
 
 .gif{
@@ -82,38 +81,38 @@ header{
   max-height:220px;
   object-fit:contain;
   background:#000;
-  border-radius:10px;
-  margin-bottom:12px;
+  border-radius:8px;
+  margin-bottom:10px;
 }
 
 .kg{
   display:flex;
-  gap:10px;
+  gap:8px;
 }
 
 .kg input{
   flex:1;
   padding:10px;
   border-radius:8px;
-  border:none;
-  background:#000;
+  border:1px solid var(--border);
+  background:#0c0e12;
   color:var(--text);
 }
 
 .kg button{
-  background:var(--neon);
-  border:none;
+  padding:10px 14px;
   border-radius:8px;
-  padding:10px 18px;
-  font-weight:bold;
-  box-shadow:0 0 12px var(--neon);
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  font-weight:600;
 }
 </style>
 </head>
 
 <body>
 
-<header>🏋️ Neon Blue Workout</header>
+<header>Antrenman Programı</header>
 
 <div class="tabs">
   <button class="active" onclick="showDay('g1',this)">1. Gün</button>
@@ -123,6 +122,7 @@ header{
 
 <div class="container">
 
+<!-- 1. GÜN -->
 <div id="g1" class="day" style="display:block">
   <div class="day-title">Göğüs – Arka Kol</div>
 
@@ -136,26 +136,33 @@ header{
   <div class="exercise"><h3>One Dumbbell Triceps Press</h3><img class="gif" src="https://images.squarespace-cdn.com/content/v1/5ffcea9416aee143500ea103/1638260103209-NCDPK0RI94MTSL5YWMZM/One%2BArm%2BOverhead%2BStanding%2BTriceps%2BExtensions.jpeg"><KgBox id="odtp"/></div>
 </div>
 
+<!-- 2. GÜN -->
 <div id="g2" class="day">
   <div class="day-title">Sırt – Ön Kol</div>
 
   <div class="exercise"><h3>Lat Pull Down</h3><img class="gif" src="https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif"><KgBox id="lat"/></div>
-  <div class="exercise"><h3>Barbell Row</h3><img class="gif" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKyXeC53nU79lG6V7aSTGlknIDFjAk9lTXo5pXn32ggoZDpShPrjYpwo-D&s=10"><KgBox id="row"/></div>
+  <div class="exercise"><h3>Barbell Bent-over Row</h3><img class="gif" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKyXeC53nU79lG6V7aSTGlknIDFjAk9lTXo5pXn32ggoZDpShPrjYpwo-D&s=10"><KgBox id="row"/></div>
   <div class="exercise"><h3>Seated Cable Row</h3><img class="gif" src="https://i.namu.wiki/i/qE1tddISYh8n7gCAPqAhuGNFDxDr_aihEMqrYw0989bTKSP_K0hX4ZSr-7Qm-pyGVbO08QsQmwNj1dXqvmpSJw.webp"><KgBox id="scr"/></div>
-  <div class="exercise"><h3>Dumbbell Row</h3><img class="gif" src="https://burnfit.io/wp-content/uploads/2023/11/OA_DB_ROW.gif"><KgBox id="oadr"/></div>
-  <div class="exercise"><h3>Barbell Curl</h3><img class="gif" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNeuYuk6pKjV5Dl1TsryKIq5NJ9i5wS2R9K3qB2JgQnw&s=10"><KgBox id="bbc"/></div>
+  <div class="exercise"><h3>One Arm Dumbbell Row</h3><img class="gif" src="https://burnfit.io/wp-content/uploads/2023/11/OA_DB_ROW.gif"><KgBox id="oadr"/></div>
+  <div class="exercise"><h3>Vertical Row Machine</h3><img class="gif" src="https://app.aspira-fitness.com/api/media/c9582142-ea9f-40ee-b9ac-f08ef4912a4e"><KgBox id="vr"/></div>
+  <div class="exercise"><h3>Barbell Biceps Curl</h3><img class="gif" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNeuYuk6pKjV5Dl1TsryKIq5NJ9i5wS2R9K3qB2JgQnw&s=10"><KgBox id="bbc"/></div>
   <div class="exercise"><h3>Scott Curl</h3><img class="gif" src="https://miro.medium.com/v2/resize:fit:1400/0*ednzW7zRRUT4a3Rd.gif"><KgBox id="sc"/></div>
   <div class="exercise"><h3>Alternative Curl</h3><img class="gif" src="https://cdn.shopify.com/s/files/1/1497/9682/files/2_dd805047-4f47-4ebf-ad7b-3336dd3b69d2.jpg"><KgBox id="ac"/></div>
 </div>
 
+<!-- 3. GÜN -->
 <div id="g3" class="day">
   <div class="day-title">Omuz – Bacak</div>
 
-  <div class="exercise"><h3>Neck Press</h3><img class="gif" src="https://fitnessprogramer.com/wp-content/uploads/2021/06/Smith-Machine-Behind-Neck-Press.gif"><KgBox id="bnp"/></div>
-  <div class="exercise"><h3>Lateral Raise</h3><img class="gif" src="https://www.strengthlog.com/wp-content/uploads/2020/12/Dumbbell-Lateral-Raise.gif"><KgBox id="dlr"/></div>
+  <div class="exercise"><h3>Barbell Neck Press</h3><img class="gif" src="https://fitnessprogramer.com/wp-content/uploads/2021/06/Smith-Machine-Behind-Neck-Press.gif"><KgBox id="bnp"/></div>
+  <div class="exercise"><h3>Dumbbell Lateral Raise</h3><img class="gif" src="https://www.strengthlog.com/wp-content/uploads/2020/12/Dumbbell-Lateral-Raise.gif"><KgBox id="dlr"/></div>
   <div class="exercise"><h3>Military Press</h3><img class="gif" src="https://fitnessprogramer.com/wp-content/uploads/2021/06/Standing-Smith-Machine-Shoulder-Press.gif"><KgBox id="mp"/></div>
-  <div class="exercise"><h3>Squat</h3><img class="gif" src="https://fitnessprogramer.com/wp-content/uploads/2023/01/Barbell-Jump-Squat.gif"><KgBox id="sq"/></div>
-  <div class="exercise"><h3>Leg Press</h3><img class="gif" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqq8tiUlANTeIDENJV-elg7P8U4jyv2Sq40vmqq9d4iQ&s=10"><KgBox id="lp"/></div>
+  <div class="exercise"><h3>Dumbbell Front Raise</h3><img class="gif" src="https://www.fitnesscim.com/wp-content/uploads/2020/01/Dumbell-Front-Raise-Nereyi-.png"><KgBox id="dfr"/></div>
+  <div class="exercise"><h3>Dumbbell Bent-over Lateral Raise</h3><img class="gif" src="https://bodybook.com.tr/wp-content/uploads/2024/10/dumbellbentoverlateralraise.gif"><KgBox id="bolr"/></div>
+  <div class="exercise"><h3>Barbell Squat</h3><img class="gif" src="https://fitnessprogramer.com/wp-content/uploads/2023/01/Barbell-Jump-Squat.gif"><KgBox id="sq"/></div>
+  <div class="exercise"><h3>Leg Press Machine</h3><img class="gif" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqq8tiUlANTeIDENJV-elg7P8U4jyv2Sq40vmqq9d4iQ&s=10"><KgBox id="lp"/></div>
+  <div class="exercise"><h3>Leg Extension</h3><img class="gif" src="https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif"><KgBox id="le"/></div>
+  <div class="exercise"><h3>Machine Leg Curl</h3><img class="gif" src="https://cdn05.zipify.com/DEy9eP8SjfPH5VtqDXB0wzZucEQ=/fit-in/3840x0/ef422538af8d4ede9dbf29f7dd318f4b/lying-leg-curl.gif"><KgBox id="lc"/></div>
 </div>
 
 </div>
