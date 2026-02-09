@@ -13,7 +13,6 @@
   --card:rgba(255,255,255,0.05);
   --border:rgba(255,255,255,0.08);
   --accent:#ff2d2d;
-  --accent-glow:rgba(255,45,45,.45);
   --text:#ffffff;
   --muted:#9ca3af;
 }
@@ -32,7 +31,6 @@ header{
   padding:18px;
   font-size:22px;
   font-weight:800;
-  letter-spacing:1px;
   background:rgba(0,0,0,.6);
   border-bottom:1px solid var(--border);
 }
@@ -49,7 +47,6 @@ header{
   color:var(--muted);
   border:none;
   font-weight:700;
-  cursor:pointer;
 }
 
 .tabs button.active{
@@ -81,18 +78,7 @@ header{
   margin-bottom:20px;
 }
 
-.exercise h3{
-  margin:0 0 10px;
-}
-
-.gif{
-  width:100%;
-  max-height:230px;
-  object-fit:contain;
-  background:#000;
-  border-radius:12px;
-  margin-bottom:14px;
-}
+.exercise h3{margin:0 0 10px}
 
 .kg{
   display:flex;
@@ -113,11 +99,10 @@ header{
   border-radius:8px;
   border:none;
   font-weight:700;
-  cursor:pointer;
 }
 
-.save{background:var(--accent); color:#fff}
-.stats{background:#111; color:#fff}
+.save{background:var(--accent);color:#fff}
+.stats{background:#111;color:#fff}
 
 /* MODAL */
 .modal{
@@ -139,22 +124,20 @@ header{
   padding:18px;
 }
 
-.modal h2{margin-top:0}
+.close{text-align:right;color:var(--muted);cursor:pointer}
 
-.modal input, .modal textarea{
-  width:100%;
-  margin-bottom:10px;
-  padding:10px;
-  background:#000;
-  border:1px solid var(--border);
-  border-radius:8px;
-  color:#fff;
+.stat-row{
+  display:flex;
+  justify-content:space-between;
+  margin:6px 0;
+  font-size:14px;
 }
 
-.close{
-  text-align:right;
+.stat-row button{
+  background:none;
+  border:none;
+  color:#ff4d4d;
   cursor:pointer;
-  color:var(--muted);
 }
 </style>
 </head>
@@ -173,30 +156,41 @@ header{
 
 <div id="g1" class="day" style="display:block">
   <div class="day-title">Göğüs – Arka Kol</div>
-  <div class="exercise"><h3>Bench Press</h3>
-    <img class="gif" src="https://burnfit.io/wp-content/uploads/2023/11/SPOTO_BP.gif">
-    <KgBox id="bp"/>
-  </div>
+  <div class="exercise"><h3>Bench Press</h3><KgBox id="bench"/></div>
+  <div class="exercise"><h3>Incline Bench Press</h3><KgBox id="incline"/></div>
+  <div class="exercise"><h3>Triceps Pushdown</h3><KgBox id="pushdown"/></div>
+</div>
+
+<div id="g2" class="day">
+  <div class="day-title">Sırt – Ön Kol</div>
+  <div class="exercise"><h3>Lat Pulldown</h3><KgBox id="lat"/></div>
+  <div class="exercise"><h3>Barbell Row</h3><KgBox id="row"/></div>
+  <div class="exercise"><h3>Biceps Curl</h3><KgBox id="curl"/></div>
+</div>
+
+<div id="g3" class="day">
+  <div class="day-title">Omuz – Bacak</div>
+  <div class="exercise"><h3>Shoulder Press</h3><KgBox id="shoulder"/></div>
+  <div class="exercise"><h3>Squat</h3><KgBox id="squat"/></div>
+  <div class="exercise"><h3>Leg Curl</h3><KgBox id="legcurl"/></div>
 </div>
 
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <div class="close" onclick="closeModal()">✕</div>
     <h2 id="modalTitle"></h2>
     <input type="date" id="statDate">
     <input type="number" id="statKg" placeholder="Kg">
-    <textarea id="statNote" placeholder="Not (opsiyonel)"></textarea>
     <button class="save" onclick="saveStat()">Kaydet</button>
+    <div id="statList"></div>
     <canvas id="chart" height="200"></canvas>
   </div>
 </div>
 
 <script>
-let currentId = null;
-let chart = null;
+let currentId, chart;
 
 function showDay(id,el){
   document.querySelectorAll('.day').forEach(d=>d.style.display='none');
@@ -205,62 +199,60 @@ function showDay(id,el){
   el.classList.add('active');
 }
 
-function renderKg(){
-  document.querySelectorAll("KgBox").forEach(e=>{
-    const id=e.getAttribute("id");
-    e.outerHTML=`
-    <div class="kg">
-      <input id="${id}" placeholder="Kg">
-      <button class="save" onclick="saveKg('${id}')">KAYDET</button>
-      <button class="stats" onclick="openModal('${id}')">📈</button>
-    </div>`;
-  });
-}
-renderKg();
+document.querySelectorAll("KgBox").forEach(e=>{
+  const id=e.getAttribute("id");
+  e.outerHTML=`
+  <div class="kg">
+    <input id="${id}">
+    <button class="save" onclick="saveQuick('${id}')">KAYDET</button>
+    <button class="stats" onclick="openModal('${id}')">📈</button>
+  </div>`;
+});
 
-function saveKg(id){
+function saveQuick(id){
   const kg=document.getElementById(id).value;
-  const data=JSON.parse(localStorage.getItem(id+'-stats')||'[]');
+  const data=JSON.parse(localStorage.getItem(id)||'[]');
   data.push({date:new Date().toISOString().slice(0,10),kg});
-  localStorage.setItem(id+'-stats',JSON.stringify(data));
+  localStorage.setItem(id,JSON.stringify(data));
 }
 
 function openModal(id){
   currentId=id;
-  document.getElementById('modal').style.display='flex';
-  document.getElementById('modalTitle').innerText=id.toUpperCase();
-  drawChart();
+  modal.style.display='flex';
+  modalTitle.innerText=id.toUpperCase();
+  draw();
 }
 
 function closeModal(){
-  document.getElementById('modal').style.display='none';
+  modal.style.display='none';
   if(chart) chart.destroy();
 }
 
 function saveStat(){
-  const date=statDate.value;
-  const kg=statKg.value;
-  const note=statNote.value;
-  const data=JSON.parse(localStorage.getItem(currentId+'-stats')||'[]');
-  data.push({date,kg,note});
-  localStorage.setItem(currentId+'-stats',JSON.stringify(data));
-  drawChart();
+  const data=JSON.parse(localStorage.getItem(currentId)||'[]');
+  data.push({date:statDate.value,kg:statKg.value});
+  localStorage.setItem(currentId,JSON.stringify(data));
+  draw();
 }
 
-function drawChart(){
-  const data=JSON.parse(localStorage.getItem(currentId+'-stats')||'[]');
-  const ctx=document.getElementById('chart');
+function removeStat(i){
+  const data=JSON.parse(localStorage.getItem(currentId)||'[]');
+  data.splice(i,1);
+  localStorage.setItem(currentId,JSON.stringify(data));
+  draw();
+}
+
+function draw(){
+  const data=JSON.parse(localStorage.getItem(currentId)||'[]');
+  statList.innerHTML=data.map((d,i)=>`
+    <div class="stat-row">
+      ${d.date} – ${d.kg}kg
+      <button onclick="removeStat(${i})">🗑</button>
+    </div>`).join('');
   if(chart) chart.destroy();
-  chart=new Chart(ctx,{
+  chart=new Chart(chart.getContext('2d'),{
     type:'line',
-    data:{
-      labels:data.map(d=>d.date),
-      datasets:[{
-        data:data.map(d=>d.kg),
-        borderColor:'#ff2d2d',
-        tension:.3
-      }]
-    },
+    data:{labels:data.map(d=>d.date),datasets:[{data:data.map(d=>d.kg),borderColor:'#ff2d2d',tension:.3}]},
     options:{plugins:{legend:{display:false}}}
   });
 }
