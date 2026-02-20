@@ -149,7 +149,7 @@ header{
 
 </div>
 
-  <javascript>
+  <script>
   function showDay(id,el){
   document.querySelectorAll('.day').forEach(d=>d.style.display='none');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
@@ -170,7 +170,7 @@ function renderKg(){
   });
 }
 renderKg();
-<javascript>
+  </script>
 function rastgeleFikra(){
   fetch("https://v2.jokeapi.dev/joke/Any?lang=tr")
     .then(response => response.json())
